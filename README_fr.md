@@ -13,7 +13,7 @@ La passerelle ["Mautrix-Facebook"](https://docs.mau.fi/bridges/python/facebook/i
 
 ** Attention : sauvegardez et restaurez toujours les deux applications Yunohost matrix-synapse et mautrix_facebook en même temps!**
 
-**Version incluse:** 0.1.1
+**Version incluse:** 0.3.0
 
 ## Captures d'écran
 
@@ -89,11 +89,10 @@ Si vous devez téléverser vos fichiers log quelque-part, soyez avertis qu'ils c
 
 ## Liens
 
- * Messengerer un bug:  https://github.com/YunoHost-Apps/mautrix_facebook_ynh/issues
+ * Signaler un bug:  https://github.com/YunoHost-Apps/mautrix_facebook_ynh/issues
  * Site de l'application: https://github.com/YunoHost-Apps/mautrix_facebook_ynh
  * Documentation de l'application principale: https://docs.mau.fi/bridges/python/facebook/index.html
  * Dépôt de l'application principale: https://github.com/tulir/mautrix-facebook
- * Up-Upstream repository: https://gitlab.com/facebookd/facebookd
  * Site web YunoHost: https://yunohost.org/
 
 ---
