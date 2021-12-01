@@ -8,6 +8,12 @@
 	},
 	"version": "0.3.0~ynh1",
 	"url": "https://github.com/tulir/mautrix-facebook",
+    "upstream": {
+        "license": "AGPL-3.0-or-later",
+        "admindoc": "https://docs.mau.fi/bridges/python/setup/index.html?bridge=facebook",
+        "userdoc": "https://docs.mau.fi/bridges/python/facebook/index.html",
+        "code": "https://github.com/mautrix/facebook"
+    },
 	"license": "AGPL-3.0-or-later",
 	"maintainer": {
 		"name": "Gredin67",
