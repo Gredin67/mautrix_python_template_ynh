@@ -16,12 +16,25 @@ ynh_script_progression --message="Loading installation settings..." --weight=1
 
 app=$YNH_APP_INSTANCE_NAME
 
+domain=$(ynh_app_setting_get --app=$app --key=domain)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+# language=$(ynh_app_setting_get --app=$app --key=language)
+
 server_name=$(ynh_app_setting_get --app=$app --key=server_name)
+port=$(ynh_app_setting_get --app=$app --key=port)
 botname=$(ynh_app_setting_get --app=$app --key=botname)
 synapse_instance=$(ynh_app_setting_get --app=$app --key=synapse_instance)
 app_service_registration_path=$(ynh_app_setting_get --app=$app --key=app_service_registration_path)
-port=$(ynh_app_setting_get --app=$app --key=port)
+# bot_is_synapse_admin=$(ynh_app_setting_get --app=$app --key=bot_is_synapse_admin)
+encryption=$(ynh_app_setting_get --app=$app --key=encryption)
+botadmin=$(ynh_app_setting_get --app=$app --key=botadmin)
+botusers=$(ynh_app_setting_get --app=$app --key=botusers)
+mautrix_config_path="$final_path/config.yaml"
+mautrix_version=$(ynh_app_setting_get --app=$app --key=mautrix_version)
+
+ynh_print_OFF
+mautrix_bridge_db_pwd=$(ynh_app_setting_get --app=$app --key=mautrix_bridge_db_pwd)
+ynh_print_ON
 
 #=================================================
 # SET CONSTANTS
