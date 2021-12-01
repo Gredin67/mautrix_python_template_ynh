@@ -32,9 +32,7 @@ botusers=$(ynh_app_setting_get --app=$app --key=botusers)
 mautrix_config_path="$final_path/config.yaml"
 mautrix_version=$(ynh_app_setting_get --app=$app --key=mautrix_version)
 
-ynh_print_OFF
 mautrix_bridge_db_pwd=$(ynh_app_setting_get --app=$app --key=mautrix_bridge_db_pwd)
-ynh_print_ON
 
 #=================================================
 # SET CONSTANTS
