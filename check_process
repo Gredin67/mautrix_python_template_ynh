@@ -8,7 +8,7 @@
 	; Manifest
 		port="8449"	(PORT)
 		synapsenumber="1"
-		whatsappbot="whatsappbot"
+		botname="facebookbot"
 		bot_synapse_adm=0
 		encryption=0
 		botadmin="@johndoe:synapsedomain.tld"	(USER)
