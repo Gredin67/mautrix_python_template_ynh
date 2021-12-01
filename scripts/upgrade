@@ -190,7 +190,6 @@ $final_path/bin/python3 -m mautrix_facebook -g -c $mautrix_config_path -r $app_s
 #=================================================
 
 # Set permissions on app files
-chown -R root: $final_path
 chown $mautrix_bridge_user:root -R $final_path
 #=================================================
 # SETUP LOGROTATE
