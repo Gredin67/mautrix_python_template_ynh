@@ -28,9 +28,34 @@ ynh_print_info --message="Loading installation settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 domain=$(ynh_app_setting_get --app=$app --key=domain)
-db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+# language=$(ynh_app_setting_get --app=$app --key=language)
+
+server_name=$(ynh_app_setting_get --app=$app --key=server_name)
+port=$(ynh_app_setting_get --app=$app --key=port)
+botname=$(ynh_app_setting_get --app=$app --key=botname)
+synapse_instance=$(ynh_app_setting_get --app=$app --key=synapse_instance)
+app_service_registration_path=$(ynh_app_setting_get --app=$app --key=app_service_registration_path)
+# bot_is_synapse_admin=$(ynh_app_setting_get --app=$app --key=bot_is_synapse_admin)
+encryption=$(ynh_app_setting_get --app=$app --key=encryption)
+botadmin=$(ynh_app_setting_get --app=$app --key=botadmin)
+botusers=$(ynh_app_setting_get --app=$app --key=botusers)
+mautrix_config_path="$final_path/config.yaml"
+mautrix_version=$(ynh_app_setting_get --app=$app --key=mautrix_version)
+
+mautrix_bridge_db_pwd=$(ynh_app_setting_get --app=$app --key=mautrix_bridge_db_pwd)
+#=================================================
+# SET CONSTANTS
+#=================================================
+
+botname_synapse_db_user="@$botname:$server_name"
+synapse_db_name="matrix_$synapse_instance"
+mautrix_bridge_user=$app
+mautrix_bridge_db_name=$app
+mautrix_bridge_db_user=$app
+upstream_version=$(ynh_app_upstream_version)
+log_filename="/var/log/$app/$app.log"
 
 #=================================================
 # DECLARE DATA AND CONF FILES TO BACKUP
@@ -54,7 +79,7 @@ ynh_backup --src_path="$final_path"
 # BACKUP LOGROTATE
 #=================================================
 
-ynh_backup --src_path="/etc/logrotate.d/$app"
+ynh_backup --src_path="/var/log/$app"
 
 #=================================================
 # BACKUP SYSTEMD
@@ -63,22 +88,11 @@ ynh_backup --src_path="/etc/logrotate.d/$app"
 ynh_backup --src_path="/etc/systemd/system/$app.service"
 
 #=================================================
-# BACKUP VARIOUS FILES
+# BACKUP THE POSTGRESQL DATABASE
 #=================================================
+ynh_print_info --message="Backing up the PostgreSQL database..."
 
-ynh_backup --src_path="/etc/cron.d/$app"
-
-ynh_backup --src_path="/etc/$app/"
-
-#=================================================
-# BACKUP THE MYSQL DATABASE
-#=================================================
-ynh_print_info --message="Backing up the MySQL database..."
-
-### (However, things like MySQL dumps *do* take some time to run, though the
-### copy of the generated dump to the archive still happens later)
-
-ynh_mysql_dump_db --database="$db_name" > db.sql
+ynh_psql_dump_db --database="$mautrix_bridge_db_name" > ${YNH_CWD}/dump.sql
 
 #=================================================
 # END OF SCRIPT
