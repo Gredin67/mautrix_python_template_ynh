@@ -175,6 +175,7 @@ ynh_script_progression --message="Upgrading Mautrix-Bridge..." --weight=2
 mkdir -p /var/log/$app
 # Configure Mautrix-Bridge
 python3 -m venv $final_path
+export HOME=$final_path
 $final_path/bin/pip3 install --upgrade pip setuptools wheel
 $final_path/bin/pip3 install --upgrade $final_path/src/mautrix-facebook.tar.gz
 $final_path/bin/python3 -m mautrix_facebook -g -c $mautrix_config_path -r $app_service_registration_path/$app.yaml
