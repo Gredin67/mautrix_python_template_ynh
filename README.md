@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 A Facebook puppeting bridge for Matrix/Synapse.
 
-**Shipped version:** 0.3.0~ynh1
+**Shipped version:** 0.3.3~ynh1
 
 
 
