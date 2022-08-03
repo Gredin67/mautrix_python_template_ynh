@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/mautrix/facebook/archive/v0.3.0.tar.gz
-SOURCE_SUM=0b31c0a865d71bc76bed541ee8e57dd790a67197f62883032a7ae05b9658642b
+SOURCE_URL=https://github.com/mautrix/facebook/archive/v0.3.3.tar.gz
+SOURCE_SUM=5a312a45b26277b5e52b13236520c731d4cd8dc524942f95ba1eb846c0900efe
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true

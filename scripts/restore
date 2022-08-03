@@ -110,7 +110,8 @@ ynh_psql_execute_file_as_root --file="${YNH_CWD}/dump.sql" --database="$mautrix_
 ynh_restore_file --origin_path="/var/log/$app"
 
 python3 -m venv $final_path
-
+export HOME=$final_path
+$final_path/bin/pip3 install --upgrade pip setuptools wheel
 
 #=================================================
 # REGISTER SYNAPSE APP-SERVICE
