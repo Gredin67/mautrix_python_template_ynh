@@ -3,7 +3,7 @@
     "id": "mautrix_facebook",
     "packaging_format": 1,
     "description": {
-        "en": "A Facebook puppeting bridge for Matrix/Synapse.",
+        "en": "Facebook puppeting bridge for Matrix/Synapse.",
         "fr": "Passerelle Facebook pour Matrix/Synapse."
     },
     "version": "0.3.3~ynh1",
