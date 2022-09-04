@@ -8,5 +8,6 @@ User=__APP__
 Group=__APP__
 WorkingDirectory=__FINALPATH__/
 ExecStart=__FINALPATH__/bin/python3 -m mautrix_facebook
+
 [Install]
 WantedBy=multi-user.target

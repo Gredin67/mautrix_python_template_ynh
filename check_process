@@ -1,15 +1,12 @@
-# See here for more information
-# https://github.com/YunoHost/package_check#syntax-check_process-file
-
 ;; Default test serie
 	; pre-install
 		sudo yunohost tools update apps
 		sudo yunohost app info synapse --quiet > /dev/null || sudo yunohost app install https://github.com/YunoHost-Apps/synapse_ynh/ -a "domain=$domain&server_name=$server_name&is_free_registration=$is_free_registration&jitsi_server=$jitsi_server" --force
 	; Manifest
 		port="8449"	(PORT)
+		bot_synapse_adm=0
 		synapsenumber="1"
 		botname="facebookbot"
-		bot_synapse_adm=0
 		encryption=0
 		botadmin="@johndoe:synapsedomain.tld"	(USER)
 		botusers="@johndoe:synapsedomain.tld"
@@ -21,6 +18,7 @@
 		setup_private=0
 		setup_public=0
 		upgrade=1
+		# 0.2.0
 		upgrade=1	from_commit=c11342a1f14fe8b287dfcb025f8f8196b9097175
 		backup_restore=1
 		multi_instance=1
