@@ -17,7 +17,6 @@ ynh_script_progression --message="Loading installation settings..." --weight=1
 app=$YNH_APP_INSTANCE_NAME
 
 botname=$(ynh_app_setting_get --app=$app --key=botname)
-encryption=$(ynh_app_setting_get --app=$app --key=encryption)
 botadmin=$(ynh_app_setting_get --app=$app --key=botadmin)
 botusers=$(ynh_app_setting_get --app=$app --key=botusers)
 synapse_instance=$(ynh_app_setting_get --app=$app --key=synapse_instance)

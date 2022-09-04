@@ -10,9 +10,8 @@ homeserver:
     # Whether or not the homeserver supports asmux-specific endpoints,
     # such as /_matrix/client/unstable/net.maunium.asmux/dms for atomically
     # updating m.direct.
-    # asmux: false
     asmux: false
-        # Number of retries for all HTTP requests if the homeserver isn't reachable.
+    # Number of retries for all HTTP requests if the homeserver isn't reachable.
     http_retry_count: 4
     # The URL to push real-time bridge status to.
     # If set, the bridge will make POST requests to this URL whenever a user's Facebook MQTT connection state changes.

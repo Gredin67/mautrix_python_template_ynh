@@ -70,7 +70,7 @@ ynh_app_setting_set --app=$app --key=synapse_registration_path --value=$synapse_
 #=================================================
 # FIND AND OPEN A PORT
 #=================================================
-ynh_script_progression --message="Configuring bridge port..." --weight=1
+ynh_script_progression --message="Finding an available port..." --weight=1
 
 # Find a free port for communication between your local synapse instance (home server) and its app service mautrix_bridge.
 port=$(ynh_find_port --port=8449)
@@ -114,7 +114,7 @@ ynh_setup_source --dest_dir="$final_path/src"
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
-chown -R $app:root "$final_path"
+chown -R $app:$app "$final_path"
 
 #=================================================
 # SPECIFIC SETUP
@@ -139,15 +139,20 @@ python3 -m venv $final_path
 export HOME=$final_path
 $final_path/bin/pip3 install --upgrade pip setuptools wheel
 $final_path/bin/pip3 install --upgrade $final_path/src/mautrix-facebook.tar.gz
+
+#=================================================
+# REGISTER SYNAPSE APP-SERVICE
+#=================================================
+ynh_script_progression --message="Registering Synapse app-service" --weight=1
+
 $final_path/bin/python3 -m mautrix_facebook -g -c $final_path/config.yaml -r $synapse_registration_path/$app.yaml
 
 /opt/yunohost/matrix-$synapse_instance/update_synapse_for_appservice.sh || ynh_die "Synapse can't restart with the appservice configuration"
 # Handled by synapse: synapse_ynh adds all registration files added in $synapse_registration_path to the app_service_config_files list
 
+chown -R $app:$app "$final_path"
 ynh_store_file_checksum --file="$synapse_registration_path/$app.yaml"
 ynh_store_file_checksum --file="$final_path/config.yaml"
-
-chown $app:root -R $final_path
 
 #=================================================
 # SETUP SYSTEMD
@@ -166,7 +171,7 @@ ynh_script_progression --message="Configuring log rotation..." --weight=3
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate --logfile "/var/log/$app/$app.log"
-chown $app:root -R /var/log/$app
+chown $app:$app -R /var/log/$app
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
