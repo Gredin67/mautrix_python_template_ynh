@@ -73,7 +73,7 @@ chown -R $app:$app "$final_path"
 ynh_script_progression --message="Reinstalling dependencies..." --weight=1
 
 # Define and install dependencies
-ynh_install_app_dependencies $pkg_dependencies
+ynh_exec_warn_less ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # RESTORE THE POSTGRESQL DATABASE
@@ -88,17 +88,19 @@ ynh_psql_execute_file_as_root --file="./db.sql" --database=$db_name
 #=================================================
 # INSTALL MAUTRIX-BRIDGE PYTHON MODULE
 #=================================================
-ynh_script_progression --message="Installing Mautrix-Bridge Python Module..." --weight=1
-
-ynh_restore_file --origin_path="/var/log/$app"
+ynh_script_progression --message="Installing Mautrix-Bridge Python Module..." --weight=6
 
 python3 -m venv $final_path
 export HOME=$final_path
 $final_path/bin/pip3 install --upgrade pip setuptools wheel
-$final_path/bin/python3 -m mautrix_facebook -g -c $final_path/config.yaml -r $synapse_registration_path/$app.yaml
 
+#=================================================
+# REGISTER SYNAPSE APP-SERVICE
+#=================================================
+ynh_script_progression --message="Registering Synapse app-service" --weight=1
+
+$final_path/bin/python3 -m mautrix_facebook -g -c $final_path/config.yaml -r $synapse_registration_path/$app.yaml
 /opt/yunohost/matrix-$synapse_instance/update_synapse_for_appservice.sh || ynh_die "Synapse can't restart with the appservice configuration"
-# Handled by synapse: synapse_ynh adds all registration files added in $synapse_registration_path to the app_service_config_files list
 
 #=================================================
 # RESTORE SYSTEMD
@@ -113,8 +115,7 @@ systemctl enable $app.service --quiet
 #=================================================
 ynh_script_progression --message="Restoring the logrotate configuration..." --weight=1
 
-ynh_use_logrotate --logfile "/var/log/$app/$app.log"
-chown $app:$app -R /var/log/$app
+ynh_restore_file --origin_path="/etc/logrotate.d/$app"
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
@@ -129,7 +130,7 @@ yunohost service add $app --description="$app daemon for bridging FB and Matrix 
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start"
+ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
 # Wait until the synapse user is created
 sleep 30
 #	# (Note that, by default, non-admins might not have your homeserver's permission to create communities.)
