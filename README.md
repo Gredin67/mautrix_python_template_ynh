@@ -18,6 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 A Facebook puppeting bridge for Matrix/Synapse.
 
 **Shipped version:** 0.3.3~ynh1
+
 ## Documentation and resources
 
 * Official user documentation: <https://docs.mau.fi/bridges/python/facebook/index.html>
