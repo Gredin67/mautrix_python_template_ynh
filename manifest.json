@@ -21,7 +21,7 @@
         "url": "https://github.com/YunoHost-Apps/mautrix_facebook_ynh"
     },
     "requirements": {
-        "yunohost": ">= 4.1"
+        "yunohost": ">= 11.1"
     },
     "multi_instance": true,
     "services": [
