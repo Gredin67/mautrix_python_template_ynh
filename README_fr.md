@@ -74,7 +74,7 @@ puis en redémarrant le service:
 * Documentation officielle utilisateur : <https://docs.mau.fi/bridges/python/facebook/index.html>
 * Documentation officielle de l’admin : <https://docs.mau.fi/bridges/python/setup/index.html?bridge=facebook>
 * Dépôt de code officiel de l’app : <https://github.com/mautrix/facebook>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_mautrix_facebook>
+* YunoHost Store: <https://apps.yunohost.org/app/mautrix_facebook>
 * Signaler un bug : <https://github.com/YunoHost-Apps/mautrix_facebook_ynh/issues>
 
 ## Informations pour les développeurs
