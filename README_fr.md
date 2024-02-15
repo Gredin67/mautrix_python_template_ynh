@@ -23,7 +23,6 @@ La passerelle ["Mautrix-Facebook"](https://docs.mau.fi/bridges/python/facebook/i
 
 
 **Version incluse :** 0.5.1~ynh1
-
 ## Avertissements / informations importantes
 
 ## Liste de passerelles publiques

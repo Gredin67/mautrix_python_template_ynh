@@ -20,7 +20,6 @@ A puppeting bridge between Matrix and Facebook packaged as a YunoHost service. M
 
 
 **Shipped version:** 0.5.1~ynh1
-
 ## Disclaimers / important information
 
 ## List of known public services
